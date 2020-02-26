@@ -1,0 +1,29 @@
+name: floor_example
+description: A new Flutter application.
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  floor: ^0.11.0
+  sqflite: any
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  floor_generator: ^0.11.0
+  build_runner: ^1.7.3
+
+
+flutter:
+
+
+  uses-material-design: true
+
