@@ -2,7 +2,7 @@ import 'package:floor/floor.dart';
 import 'package:floor_example/db/database.dart';
 import 'package:floor_example/model/Student.dart';
 import 'package:flutter/material.dart';
-import 'package:floor_example/db/StudentDao.dart';
+import 'package:floor_example/db/dao/StudentDao.dart';
 
 
 
@@ -29,16 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _HomeScreenState(this.studentDao);
 
-   Future<void> main() async {
-     WidgetsFlutterBinding.ensureInitialized();
 
-     final studentDatabase = await $FloorStudentDatabase
-         .databaseBuilder('student.db')
-         .build();
-
-     var studentDao = studentDatabase.studentDao;
-
-   }
 
    builder()async{
      studentDatabase =  await $FloorStudentDatabase.databaseBuilder('student.db').build();
@@ -54,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     builder();
-    main();
    }
    List<Student> listStudent;
   @override
@@ -127,14 +117,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 studentDao.insertStudent(patient);
                  formKey.currentState.reset();
 
-
               },
             ),
           ),
           SizedBox(height: 20,),
           Expanded(
             child: StreamBuilder<List<Student>>(
-                stream: studentDao.findAllTasksAsStream(),
+                stream: studentDao.findAllStudentsAsStream(),
               builder: (_, snapshot) {
                 if (!snapshot.hasData) return Container();
 
@@ -151,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         int id = tasks[index].id;
                         var patient = Student(id: id);
                         print(tasks[index].name);
-                        studentDao.deleteTask(patient);
+                        studentDao.deleteStudent(patient);
                       },
                     );
                   },

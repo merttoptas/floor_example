@@ -1,4 +1,4 @@
-import 'package:floor_example/db/StudentDao.dart';
+import 'package:floor_example/db/dao/StudentDao.dart';
 import 'package:floor_example/db/database.dart';
 import 'package:flutter/material.dart';
 import 'package:floor_example/homeScreen.dart'
