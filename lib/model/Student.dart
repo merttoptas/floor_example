@@ -10,7 +10,6 @@ class Student {
 
   Student({this.id, this.name, this.school});
 
-
   @override
   String toString() {
     return 'Student{id: $id, name: $name, school: $school}';

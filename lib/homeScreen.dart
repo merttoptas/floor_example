@@ -22,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
    Student student;
 
+   List<Student> listStudent;
+
    final formKey = GlobalKey<FormState>();
 
    StudentDatabase  studentDatabase;
@@ -46,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     builder();
    }
-   List<Student> listStudent;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,19 +129,19 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (_, snapshot) {
                 if (!snapshot.hasData) return Container();
 
-                final tasks = snapshot.data;
+                final students = snapshot.data;
                 print(snapshot.data);
 
                 return ListView.builder(
-                  itemCount: tasks.length,
+                  itemCount: students.length,
                   itemBuilder: (_, index) {
                     return ListTile(
-                      title: Text(tasks[index].name),
-                      subtitle: Text(tasks[index].school),
+                      title: Text(students[index].name),
+                      subtitle: Text(students[index].school),
                       onLongPress: (){
-                        int id = tasks[index].id;
+                        int id = students[index].id;
                         var patient = Student(id: id);
-                        print(tasks[index].name);
+                        print(students[index].name);
                         studentDao.deleteStudent(patient);
                       },
                     );
